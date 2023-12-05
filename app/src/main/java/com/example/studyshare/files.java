@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +71,17 @@ public class files extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_files, container, false);
+
+        // Configurar animación de entrada
+        Transition abrirfragment = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_right);
+        setEnterTransition(abrirfragment);
+
+        // Configurar animación de salida
+        Transition salirfragment = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_left);
+        setExitTransition(salirfragment);
+
         //Este es el recyclerView que contendra a nuestra vista de MainModel
         recyclerView  =  view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

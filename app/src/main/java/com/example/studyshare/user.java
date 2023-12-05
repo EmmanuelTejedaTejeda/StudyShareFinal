@@ -2,6 +2,9 @@ package com.example.studyshare;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +63,15 @@ public class user extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+        // Configurar animación de entrada
+        Transition abrirfragment = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_right);
+        setEnterTransition(abrirfragment);
+
+        // Configurar animación de salida
+        Transition salirfragment = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_right);
+        setExitTransition(salirfragment);
         return view;
     }
 

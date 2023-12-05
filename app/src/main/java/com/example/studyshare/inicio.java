@@ -15,9 +15,14 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -85,13 +90,25 @@ public class inicio extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //Animaciones
-
+        //mostrar la vista
         View view = inflater.inflate(R.layout.fragment_inicio, container, false);
+
+        // Configurar animación de entrada
+        Transition abrirfragment = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_right);
+        setEnterTransition(abrirfragment);
+
+        // Configurar animación de salida
+        Transition salirfragment = TransitionInflater.from(requireContext())
+                .inflateTransition(android.R.transition.slide_left);
+        setExitTransition(salirfragment);
+
+        //definir botones
         informatica = view.findViewById(R.id.informatica);
         sistemas = view.findViewById(R.id.sistemas);
         mecatronica = view.findViewById(R.id.mecatronica);
@@ -101,6 +118,7 @@ public class inicio extends Fragment {
         diseno = view.findViewById(R.id.diseno);
         turismo = view.findViewById(R.id.turismo);
 
+        //Creacion de todas las  animaciones
         informatica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
