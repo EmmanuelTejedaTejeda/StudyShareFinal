@@ -1,22 +1,10 @@
 package com.example.studyshare;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toolbar;
-
-import com.google.android.material.navigation.NavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,9 +12,6 @@ import com.google.android.material.navigation.NavigationView;
  * create an instance of this fragment.
  */
 public class user extends Fragment {
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Button abrirmenu;
 
 
 
@@ -75,21 +60,6 @@ public class user extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
-        drawerLayout =  view.findViewById(R.id.drawerLayout);
-        navigationView =  view.findViewById(R.id.menureal);
-        abrirmenu =  view.findViewById(R.id.menu);
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-
-        ActionBarDrawerToggle toggle =new ActionBarDrawerToggle(activity, drawerLayout, abrirmenu,R.string.abrir,R.string.cerrar);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        abrirmenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(navigationView);
-            }
-        });
         return view;
     }
 
