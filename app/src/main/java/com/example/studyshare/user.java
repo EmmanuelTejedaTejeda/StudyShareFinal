@@ -3,6 +3,7 @@ package com.example.studyshare;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -21,10 +24,11 @@ import com.google.android.material.navigation.NavigationView;
  * create an instance of this fragment.
  */
 public class user extends Fragment {
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Button abrirmenu;
 
 
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle toggle;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,29 +75,23 @@ public class user extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user, container, false);
-        drawerLayout = view.findViewById(R.id.drawerLayout);
-        toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.string.abrir, R.string.cerrar);
-        drawerLayout.addDrawerListener(toggle);
+        drawerLayout =  view.findViewById(R.id.drawerLayout);
+        navigationView =  view.findViewById(R.id.menureal);
+        abrirmenu =  view.findViewById(R.id.menu);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ActionBarDrawerToggle toggle =new ActionBarDrawerToggle(activity, drawerLayout, abrirmenu,R.string.abrir,R.string.cerrar);
+        drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = view.findViewById(R.id.lateralBar);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        abrirmenu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return false;
+            public void onClick(View v) {
+                drawerLayout.openDrawer(navigationView);
             }
         });
         return view;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 }
