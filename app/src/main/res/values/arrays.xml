@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_array">
+        <item>Categorias</item>
+        <item>Revistas</item>
+        <item>Tareas</item>
+        <item>Documentos</item>
+        <item>PDF</item>
+    </string-array>
+</resources>

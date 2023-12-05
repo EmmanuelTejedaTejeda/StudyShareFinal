@@ -1,0 +1,15 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid
+        android:color="#FFFFFF"
+    /> <!-- Color de fondo de la celda -->
+    <corners
+        android:radius="8dp"
+    /> <!-- Radio de las esquinas, ajusta según sea necesario -->
+    <stroke
+        android:color="@color/green"
+        android:width="3dp"
+    /> <!-- Ancho del borde, ajusta según sea necesario -->
+
+</shape>

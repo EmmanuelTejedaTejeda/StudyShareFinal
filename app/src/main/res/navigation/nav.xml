@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/inicio">
+    <fragment
+        android:id="@+id/inicio"
+        android:name="com.example.studyshare.inicio"
+        android:label="fragment_inicio"
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_inicio_to_i_Informatica"
+            app:destination="@id/i_Informatica" />
+        <action
+            android:id="@+id/action_inicio_to_i_Mecatronica"
+            app:destination="@id/i_Mecatronica" />
+        <action
+            android:id="@+id/action_inicio_to_i_Sistemas"
+            app:destination="@id/i_Sistemas" />
+        <action
+            android:id="@+id/action_inicio_to_i_Alimentarias"
+            app:destination="@id/i_Alimentarias" />
+        <action
+            android:id="@+id/action_inicio_to_i_Diseno"
+            app:destination="@id/i_Diseno" />
+        <action
+            android:id="@+id/action_inicio_to_i_Gestion"
+            app:destination="@id/i_Gestion" />
+        <action
+            android:id="@+id/action_inicio_to_i_Industrial"
+            app:destination="@id/i_Industrial" />
+        <action
+            android:id="@+id/action_inicio_to_i_Turismo"
+            app:destination="@id/i_Turismo" />
+    </fragment>
+    <fragment
+        android:id="@+id/user"
+        android:name="com.example.studyshare.user"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/files"
+        android:name="com.example.studyshare.files"
+        android:label="fragment_files"
+        tools:layout="@layout/fragment_files" />
+    <fragment
+        android:id="@+id/i_Informatica"
+        android:name="com.example.studyshare.I_Informatica"
+        android:label="fragment_i__informatica"
+        tools:layout="@layout/fragment_i__informatica" >
+        <action
+            android:id="@+id/action_i_Informatica_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/i_Mecatronica"
+        android:name="com.example.studyshare.I_Mecatronica"
+        android:label="fragment_i__mecatronica"
+        tools:layout="@layout/fragment_i__mecatronica" >
+        <action
+            android:id="@+id/action_i_Mecatronica_to_inicio"
+            app:destination="@id/inicio" />
+        <action
+            android:id="@+id/action_i_Mecatronica_to_inicio2"
+            app:destination="@id/inicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/i_Sistemas"
+        android:name="com.example.studyshare.I_Sistemas"
+        android:label="fragment_i__sistemas"
+        tools:layout="@layout/fragment_i__sistemas" >
+        <action
+            android:id="@+id/action_i_Sistemas_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/i_Alimentarias"
+        android:name="com.example.studyshare.I_Alimentarias"
+        android:label="fragment_i__alimentarias"
+        tools:layout="@layout/fragment_i__alimentarias" >
+        <action
+            android:id="@+id/action_i_Alimentarias_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/i_Diseno"
+        android:name="com.example.studyshare.I_Diseno"
+        android:label="fragment_i__diseno"
+        tools:layout="@layout/fragment_i__diseno" >
+        <action
+            android:id="@+id/action_i_Diseno_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/i_Gestion"
+        android:name="com.example.studyshare.I_Gestion"
+        android:label="fragment_i__gestion"
+        tools:layout="@layout/fragment_i__gestion" >
+        <action
+            android:id="@+id/action_i_Gestion_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/i_Industrial"
+        android:name="com.example.studyshare.I_Industrial"
+        android:label="fragment_i__industrial"
+        tools:layout="@layout/fragment_i__industrial" >
+        <action
+            android:id="@+id/action_i_Industrial_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/i_Turismo"
+        android:name="com.example.studyshare.I_Turismo"
+        android:label="fragment_i__turismo"
+        tools:layout="@layout/fragment_i__turismo" >
+        <action
+            android:id="@+id/action_i_Turismo_to_inicio"
+            app:destination="@id/inicio" />
+    </fragment>
+</navigation>

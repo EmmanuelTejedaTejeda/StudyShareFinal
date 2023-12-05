@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">StudyShare</string>
+    <string name="Nombre" />
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Nombre_del_archivo">Nombre del archivo</string>
+    <string name="tipo_de_archivo">Tipo de archivo</string>
+    <string name="autor">Autor</string>
+    <string name="visualizar">Visualizar</string>
+    <string name="cerrar">cerrar</string>
+    <string name="abrir">abrir</string>
+</resources>
