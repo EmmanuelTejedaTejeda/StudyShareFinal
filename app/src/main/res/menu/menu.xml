@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:checkableBehavior="single"
-        android:title="opcion1"
-        android:id="@+id/option1"
-        >
 
-    </item>
-    <item
-        android:checkableBehavior="single"
-        android:title="opcion2"
-        android:id="@+id/option2"
-        android:onClick="cerrarSesion"
-        >
 
-    </item>
-    <item
+        <item
+            android:id="@+id/fak"
+            android:title="Facebook"
+            android:icon="@drawable/facebook"
+            />
+        <item
+            android:id="@+id/instagram"
+            android:title="Instagram"
+            android:icon="@drawable/instagram"
+            />
+        <item
+            android:id="@+id/moodle"
+            android:title="Pagina oficial"
+            android:icon="@drawable/moodle"
+            />
 
-        android:checkableBehavior="single"
-        android:title="opcion3"
-        android:id="@+id/option3"
-        >
 
-    </item>
 </menu>
