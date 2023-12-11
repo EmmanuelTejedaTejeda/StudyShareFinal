@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -18,12 +20,17 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link I_Diseno#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class I_Diseno extends Fragment {
+    RecyclerView diseno;
+    MainAdapter mainAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -102,6 +109,28 @@ public class I_Diseno extends Fragment {
                 scaledow.start();
             }
         });
+
+        diseno = view.findViewById(R.id.Rdiseno);
+        diseno.setLayoutManager(new LinearLayoutManager(getActivity()));
+        FirebaseRecyclerOptions<MainModel> options =
+                new FirebaseRecyclerOptions.Builder<MainModel>()
+                        .setQuery(FirebaseDatabase.getInstance()
+                                .getReference()
+                                .child("archivos"), MainModel.class)
+                        .build();
+        mainAdapter = new MainAdapter(options);
+        diseno.setAdapter(mainAdapter);
         return view;
+    }
+
+    public void onStart() {
+        super.onStart();
+        mainAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mainAdapter.startListening();
     }
 }

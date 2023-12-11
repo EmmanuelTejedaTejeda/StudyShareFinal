@@ -6,10 +6,13 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -20,7 +23,9 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +33,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  * create an instance of this fragment.
  */
 public class I_Alimentarias extends Fragment {
+
+    RecyclerView alimentarias;
+    MainAdapter mainAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -106,7 +114,30 @@ public class I_Alimentarias extends Fragment {
                 scaledow.start();
             }
         });
+
+        //recyclerview
+        alimentarias = view.findViewById(R.id.Ralimentarias);
+        alimentarias.setLayoutManager(new LinearLayoutManager(getActivity()));
+        FirebaseRecyclerOptions<MainModel> options =
+                new FirebaseRecyclerOptions.Builder<MainModel>()
+                        .setQuery(FirebaseDatabase.getInstance()
+                                .getReference()
+                                .child("archivosalimentarias"), MainModel.class)
+                        .build();
+        mainAdapter = new MainAdapter(options);
+        alimentarias.setAdapter(mainAdapter);
         return view;
+    }
+
+    public void onStart() {
+        super.onStart();
+        mainAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mainAdapter.startListening();
     }
 
 }

@@ -3,43 +3,46 @@ package com.example.studyshare;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
-import androidx.navigation.NavHost;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.FirebaseDatabase;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.OnDismissListener;
+import com.orhanobut.dialogplus.ViewHolder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     TextView cambiodefragmento;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Button toolbar;
+    Button toolbar, usuariosubearchivos, subirArchivos;
 
-    MenuItem face, insta, mdl;
     private boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
                     cambiodefragmento.setText("Inicio");
                     cambiodefragmento.setTextColor(getColor(R.color.white));
                 } else if (currentDestinationId == R.id.files) {
-                    cambiodefragmento.setText("Archivos");
+                    cambiodefragmento.setText("Mis archivos");
                     cambiodefragmento.setTextColor(getColor(R.color.white));
                 } else if (currentDestinationId == R.id.user) {
                     cambiodefragmento.setText("Usuario");
@@ -107,6 +110,15 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         getOnBackPressedDispatcher().addCallback(this, callback);
         navegar();
 
+        subirArchivos = findViewById(R.id.subirArchivos);
+        subirArchivos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity2.this, AddFilesMisArchivos.class);
+                startActivity(intent);
+            }
+        });
+
     }
     private void navegar(){
 
@@ -115,16 +127,21 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
     }
 
-    public void cerrarSesion(MenuItem item) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.fak:
-                Toast.makeText(this, "sexooooooooo", Toast.LENGTH_SHORT).show();
-                break;
+        long id =  item.getItemId();
+        if (id==R.id.facebook){
+            Toast.makeText(this, "hola", Toast.LENGTH_SHORT).show();
+            return true;
         }
         return true;
     }
+
+
 }

@@ -4,17 +4,18 @@ public class MainModel {
     String descripcion;
     String imagen;
     String nombre;
-    String tipo;
+    String archivoId;
 
     public MainModel() {
     }
 
-    public MainModel(String descripcion, String imagen, String nombre, String tipo) {
+    public MainModel(String descripcion, String imagen, String nombre, String archivoId) {
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.nombre = nombre;
-        this.tipo = tipo;
+        this.archivoId = archivoId;
     }
+
 
     public String getDescripcion() {
         return descripcion;
@@ -40,11 +41,11 @@ public class MainModel {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getArchivoId() {
+        return archivoId;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setArchivoId(String archivoId) {
+        this.archivoId = archivoId;
     }
 }

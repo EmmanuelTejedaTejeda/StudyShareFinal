@@ -2,6 +2,7 @@ package com.example.studyshare;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class files extends Fragment {
 
+    SearchView buscador;
     RecyclerView recyclerView;
     MainAdapter mainAdapter;
 
@@ -87,11 +89,55 @@ public class files extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         FirebaseRecyclerOptions<MainModel> options =
                 new FirebaseRecyclerOptions.Builder<MainModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("archivos"), MainModel.class)
+                        .setQuery(FirebaseDatabase.getInstance()
+                                .getReference()
+                                .child("misarchivos"), MainModel.class)
                         .build();
 
         mainAdapter = new MainAdapter(options);
         recyclerView.setAdapter(mainAdapter);
+
+        //buscador
+        buscador = view.findViewById(R.id.buscador);
+        buscador.setIconified(false);
+
+        buscador.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                oradebuscar(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                oradebuscar(query);
+                return false;
+            }
+        });
         return view;
+    }
+
+    public void oradebuscar(String texto){
+        FirebaseRecyclerOptions<MainModel> options =
+                new FirebaseRecyclerOptions.Builder<MainModel>()
+                        .setQuery(FirebaseDatabase.getInstance()
+                                .getReference()
+                                .child("archivos").orderByChild("nombre").startAt(texto).endAt(texto+"~"), MainModel.class)
+                        .build();
+        mainAdapter = new MainAdapter(options);
+        mainAdapter.startListening();
+        recyclerView.setAdapter(mainAdapter);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mainAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mainAdapter.stopListening();
     }
 }

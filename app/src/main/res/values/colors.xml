@@ -11,4 +11,6 @@
     <color name="verde_claro">#4bc57f</color>
     <color name="gris">#515151</color>
     <color name="azul">#4BDEDE</color>
+    <color name="red">#d31625</color>
+    <color name="blue">#030185</color>
 </resources>

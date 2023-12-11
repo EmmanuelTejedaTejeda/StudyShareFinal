@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -18,12 +20,17 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link I_Turismo#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class I_Turismo extends Fragment {
+    RecyclerView turismo;
+    MainAdapter mainAdapter;
     ImageView regresar;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -103,6 +110,28 @@ public class I_Turismo extends Fragment {
                 scaledow.start();
             }
         });
+
+        turismo = view.findViewById(R.id.Rturismo);
+        turismo.setLayoutManager(new LinearLayoutManager(getActivity()));
+        FirebaseRecyclerOptions<MainModel> options =
+                new FirebaseRecyclerOptions.Builder<MainModel>()
+                        .setQuery(FirebaseDatabase.getInstance()
+                                .getReference()
+                                .child("archivos"), MainModel.class)
+                        .build();
+        mainAdapter = new MainAdapter(options);
+        turismo.setAdapter(mainAdapter);
         return view;
+    }
+
+    public void onStart() {
+        super.onStart();
+        mainAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mainAdapter.startListening();
     }
 }

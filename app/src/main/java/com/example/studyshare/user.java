@@ -1,13 +1,21 @@
 package com.example.studyshare;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,7 +23,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class user extends Fragment {
-
+    private static final int PICK_IMAGE_REQUEST = 1;
+    Button abrirGaleria;
+    Button tomarFoto;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -72,6 +82,33 @@ public class user extends Fragment {
         Transition salirfragment = TransitionInflater.from(requireContext())
                 .inflateTransition(android.R.transition.slide_right);
         setExitTransition(salirfragment);
+
+        //abrir galeria
+        abrirGaleria = view.findViewById(R.id.changepicture);
+        abrirGaleria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, PICK_IMAGE_REQUEST);
+                Image imagenSeleccionada;
+            }
+        });
+
+        //TomarFoto
+        tomarFoto = view.findViewById(R.id.tomarFoto);
+        tomarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent();
+                    intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivity(intent);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
         return view;
     }
 

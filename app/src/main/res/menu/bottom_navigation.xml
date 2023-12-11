@@ -9,7 +9,7 @@
     <item
         android:id="@+id/files"
         android:icon="@drawable/carpeta"
-        android:title="Archivos"
+        android:title="Mis archivos"
         />
 
     <item
